@@ -4,20 +4,21 @@
     <meta charset="UTF-8">
     <meta http-equiv=”X-UA-Compatible” content=”IE=edge,chrome=1″/>
     <title>Title</title>
-    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
     <script src="https://unpkg.com/ajax-hook/dist/ajaxhook.min.js"></script>
+    <style>
+        iframe{
+            width: 100%;
+            height: 100%;
+        }
+    </style>
 </head>
 <body>
-<div class="boxx">
-
-</div>
+<iframe src="https://webfq.herokuapp.com/proxy/https://www.youtube.com/embed/zQJTRNj6DPo" frameborder="0"></iframe>
 <script>
-    $('.boxx').load('https://webfq.herokuapp.com/proxy/https://www.youtube.com/embed/zQJTRNj6DPo')
     hookAjax({
         open:function(arg){
-            var i=arg[1].lastIndexOf('https');
-            var n=arg[1].slice(i);
-            arg[1]='https://webfq.herokuapp.com/proxy/'+n
+            if(arg[1].lastIndexOf('www.youtube.com')>-1)
+                arg[1]='https://webfq.herokuapp.com/proxy/'+arg[1]
         }
     })
 </script>
